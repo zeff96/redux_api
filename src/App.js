@@ -1,5 +1,8 @@
 import "./App.css";
+import FetchedUsers from "./components/FetchedUsers";
 
-function App() {}
+function App() {
+  return <FetchedUsers />;
+}
 
 export default App;

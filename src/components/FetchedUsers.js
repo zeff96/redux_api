@@ -18,17 +18,13 @@ const FetchedUsers = () => {
   }
 
   const fetchedUsers = users.map((user) => (
-    <li key={users.id}>
-      <p>{user.first}</p>
-      <p>{user.last}</p>
+    <li key={user.login.uuid}>
+      <p>{user.name.first}</p>
+      <p>{user.name.last}</p>
     </li>
   ));
 
-  return (
-    <ul>
-      <fetchedUsers />
-    </ul>
-  );
+  return <ul>{fetchedUsers}</ul>;
 };
 
 export default FetchedUsers;

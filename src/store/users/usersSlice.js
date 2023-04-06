@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 export const getUsersAsync = createAsyncThunk(
   "users/getUsersAsync",
@@ -7,7 +8,7 @@ export const getUsersAsync = createAsyncThunk(
       const res = await axios.get("https://randomuser.me/api/?results=5");
       return res.data;
     } catch (err) {
-      return err.message;
+      throw rejectWithValue(err.message);
     }
   }
 );
@@ -29,7 +30,7 @@ const usersSlice = createSlice({
       }))
       .addCase(getUsersAsync.fulfilled, (state, action) => ({
         ...state,
-        users: action.payload,
+        users: action.payload.results,
         isLoading: false,
       }))
       .addCase(getUsersAsync.rejected, (state, action) => ({

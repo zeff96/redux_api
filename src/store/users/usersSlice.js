@@ -3,12 +3,12 @@ import axios from "axios";
 
 export const getUsersAsync = createAsyncThunk(
   "users/getUsersAsync",
-  async () => {
+  async (thunkAPI) => {
     try {
       const res = await axios.get("https://randomuser.me/api/?results=5");
       return res.data;
     } catch (err) {
-      throw rejectWithValue(err.message);
+      return thunkAPI.rejectWithValue(err.message);
     }
   }
 );

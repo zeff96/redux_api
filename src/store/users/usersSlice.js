@@ -6,7 +6,8 @@ export const getUsersAsync = createAsyncThunk(
   async (thunkAPI) => {
     try {
       const res = await axios.get("https://randomuser.me/api/?results=5");
-      return res.data;
+      const { results } = res.data;
+      return results;
     } catch (err) {
       return thunkAPI.rejectWithValue(err.message);
     }
@@ -30,7 +31,7 @@ const usersSlice = createSlice({
       }))
       .addCase(getUsersAsync.fulfilled, (state, action) => ({
         ...state,
-        users: action.payload.results,
+        users: action.payload,
         isLoading: false,
       }))
       .addCase(getUsersAsync.rejected, (state, action) => ({

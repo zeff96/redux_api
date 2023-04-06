@@ -10,8 +10,8 @@ const FetchedUsers = () => {
 
   const fetchedUsers = users.map((user) => (
     <li key={users.id}>
-      <p>{user.firstName}</p>
-      <p>{user.lastName}</p>
+      <p>{user.first}</p>
+      <p>{user.last}</p>
     </li>
   ));
 

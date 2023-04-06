@@ -34,6 +34,7 @@ const usersSlice = createSlice({
       }))
       .addCase(getUsersAsync.rejected, (state, action) => ({
         ...state,
+        isLoading: false,
         error: action.error.message,
       }));
   },

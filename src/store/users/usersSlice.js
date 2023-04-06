@@ -21,7 +21,22 @@ const initialState = {
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  extraReducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(getUsersAsync.pending, (state) => ({
+        ...state,
+        isLoading: true,
+      }))
+      .addCase(getUsersAsync.fulfilled, (state, action) => ({
+        ...state,
+        users: action.payload,
+        isLoading: false,
+      }))
+      .addCase(getUsersAsync.rejected, (state, action) => ({
+        ...state,
+        error: action.error.message,
+      }));
+  },
 });
 
 export default usersSlice.reducer;
